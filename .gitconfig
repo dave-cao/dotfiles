@@ -1,0 +1,9 @@
+[user]
+    email = user.email
+	name = user.name
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+

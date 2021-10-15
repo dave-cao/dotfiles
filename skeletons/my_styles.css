@@ -1,0 +1,35 @@
+/*Variables*/
+:root {
+}
+
+/* reset */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/*fonts*/
+@font-face {
+    font-family: ;
+    src: url();
+}
+
+/*base styles*/
+
+/*Begin (mobile-first approach)*/
+
+/*small tablet sizes*/
+@media screen and (min-width: 600px) {}
+
+/*Laptop sizes*/
+@media screen and (min-width: 800px) {}
+
+/*Desktop*/
+@media screen and (min-width: 1200px) {}
+
+/*Ultra-wide*/
+@media screen and (min-width: 1500px) {}
+
+
