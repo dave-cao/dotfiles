@@ -5,20 +5,33 @@
 # =============================== MY CONFIGURATIONS =========================================
 # My Variables
 
-daily_log="Documents/System/Daily_Logs/daily_log.txt" # paths to my daily log file
+daily_log="$HOME/Documents/System/Daily_Logs/daily_log.txt" # paths to my daily log file
 
 # Trello
 done="601daf4ab4c40246b1e4a872" # used for trello (Cow's List)
+
+# Navigation
+dotfiles="$HOME/Documents/System/dotfiles"
+system="$HOME/Documents/System"
+
+code_projects="$HOME/Documents/Coding_Projects/Currently_Working"
+code_projects_completed="$HOME/Documents/Coding_Projects/Completed"
+code_projects_deprecated="$HOME/Documents/Coding_Projects/Deprecated"
+
+school="$HOME/Public/Shared_Network"
+school_python="$HOME/Public/Shared_Network/CMPUT_174"
+
 
 
 # ------------------------------------------------------
 # My Aliases
 
 # System Maintenance
-alias enter-milk="ssh (into my server)" # if you have a server then perhaps add it here :)
+alias enter-milk="Enter your server here!"
+
 
 # Personal
-alias daily="./Documents/System/Daily_Logs/DailyLogger.sh"
+alias daily="$HOME/Documents/System/Daily_Logs/DailyLogger.sh"
 alias webcam="v4l2-ctl --set-fmt-video=width=640,height=480 && mpv --no-border /dev/video0"
 
 # General Aliases
@@ -27,43 +40,53 @@ alias open="xdg-open"
 alias rm="rm -i"
 alias a="sudo apt"
 alias v="vim"
+alias p="python3"
 
 # Internet
 alias ytdl="youtube-dl --add-metadata -ic" # Download Video Link
 alias ytmp3="youtube-dl -x --output '%(title)s.%(ext)s' --embed-thumbnail --audio-format mp3 -xic" # Download only audio
 alias bgm="mpv --no-border --shuffle --no-video https://www.youtube.com/playlist?list=PLe533PvpOWljf0wHzoDtlCCqGlrvtLloV" # play background music from Soul of The Wind Youtube
-alias music="mpv --shuffle --no-video --loop-playlist" 
+alias music="mpv --shuffle --no-video --loop-playlist"
 alias tshow="trello show-cards -b \"Cow's List\" -l" # show trello list from my board
 alias tadd="trello add-card -b \"Cow's List\" -l" # add trello card to my board
 alias tmove="trello move-card"
+alias mail="neomutt"
 
 # ------------------------------------------------------------------------
 # General Use Functions
 
-# set general countdown = countdown 60 
+# set general countdown = countdown 60
 # set more than seconds = countdown $((2*60*60))
 function countdown(){
-   date1=$((`date +%s` + $1)); 
-   while [ "$date1" -ge `date +%s` ]; do 
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
+    date1=$((`date +%s` + $1));
+    while [ "$date1" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 # to run just type stopwatch
 function stopwatch(){
-  date1=`date +%s`; 
-   while true; do 
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
-    sleep 0.1
-   done
+    date1=`date +%s`;
+    while true; do
+        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 
 # =====================================================================================
 
+
+
+
+
+
+# =====================================================================================
+
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -105,12 +128,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -123,11 +146,11 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -168,10 +191,10 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 export PATH="$HOME/.local/bin:$PATH"
